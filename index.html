@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClubBot — Your club's WhatsApp assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ── Reset ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ── Tokens ────────────────────────────────────── */
+:root {
+  --red:         #D42B2B;
+  --red-dark:    #A82020;
+  --red-deep:    #7a1616;
+  --yellow:      #F7C948;
+  --yellow-dim:  #d4a82a;
+  --white:       #FFFFFF;
+  --off-white:   #F8F5F0;
+  --sand:        #F0EAE0;
+  --sand-dark:   #E0D6C8;
+  --ink:         #1A1208;
+  --ink-mid:     #4A3F30;
+  --ink-light:   #8C7E6A;
+  --rule:        #E0D6C8;
+  --wa:          #25D366;
+  --wa-bubble:   #1f6b42;
+  --bot-bubble:  #f0e8d8;
+  --bot-text:    #2a1f0e;
+  --surface:     #FFFFFF;
+  --card:        #FDF8F2;
+  --hero-bg:     #C8241E;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'DM Mono', monospace;
+}
+
+body {
+  background: var(--off-white);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ───────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 48px;
+  background: var(--red);
+  border-bottom: 3px solid var(--red-dark);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 24px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-logo-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--yellow);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.nav-cta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+  background: var(--yellow);
+  padding: 9px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--yellow-dim); }
+
+/* ── HERO ──────────────────────────────────────── */
+.hero-wrap {
+  background: var(--red);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Wave shape at the bottom */
+.hero-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 60px;
+  background: var(--off-white);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: center;
+  padding: 120px 48px 100px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Subtle diagonal stripe texture in hero */
+.hero-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -55deg,
+    transparent,
+    transparent 40px,
+    rgba(0,0,0,0.04) 40px,
+    rgba(0,0,0,0.04) 41px
+  );
+  pointer-events: none;
+}
+
+.hero-left { padding-right: 60px; }
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background: var(--yellow);
+}
+
+.hero-headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(48px, 5.8vw, 76px);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 28px;
+}
+
+.hero-headline em {
+  font-style: normal;
+  color: var(--yellow);
+  display: block;
+}
+
+.hero-sub {
+  font-size: 17px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.75);
+  font-weight: 300;
+  max-width: 420px;
+  margin-bottom: 40px;
+}
+
+.hero-sub strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+  background: var(--yellow);
+  padding: 14px 28px;
+  border-radius: 3px;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  transition: background 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-primary:hover { background: var(--yellow-dim); }
+
+.btn-secondary {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: transparent;
+  padding: 14px 28px;
+  border-radius: 3px;
+  cursor: pointer;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  transition: border-color 0.2s, color 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-secondary:hover { border-color: var(--white); }
+
+.hero-proof {
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  font-style: italic;
+  margin-top: 20px;
+}
+
+.hero-proof strong {
+  color: var(--yellow);
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* ── CHAT DEMO ─────────────────────────────────── */
+.chat-demo {
+  background: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(100,0,0,0.35), 0 4px 16px rgba(0,0,0,0.15);
+  max-width: 340px;
+  margin-left: auto;
+}
+
+.chat-header {
+  background: var(--red);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chat-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.chat-info-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.chat-info-status {
+  font-size: 11px;
+  color: rgba(255,255,255,0.65);
+}
+
+.chat-messages {
+  padding: 16px 14px;
+  min-height: 300px;
+  background: #ECE5DD;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.msg {
+  max-width: 82%;
+  padding: 9px 13px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.45;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.msg.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.msg-user {
+  background: var(--wa-bubble);
+  color: #e8f5e9;
+  align-self: flex-end;
+  border-bottom-right-radius: 3px;
+}
+
+.msg-bot {
+  background: var(--white);
+  color: var(--bot-text);
+  align-self: flex-start;
+  border-bottom-left-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.msg-bot strong {
+  color: var(--red);
+  font-weight: 600;
+}
+
+.msg-bot .conditions-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 7px;
+}
+
+.cond-pill {
+  background: #FFF3CD;
+  color: var(--ink-mid);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+  border: 1px solid #F7C948;
+}
+
+.typing-indicator {
+  background: var(--white);
+  align-self: flex-start;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border-bottom-left-radius: 3px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.typing-indicator.visible { opacity: 1; }
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: var(--ink-light);
+  border-radius: 50%;
+  animation: bounce 1.2s infinite ease-in-out;
+}
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-5px); }
+}
+
+.chat-input-bar {
+  padding: 12px 14px;
+  background: var(--white);
+  border-top: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-input-fake {
+  flex: 1;
+  background: var(--off-white);
+  border-radius: 20px;
+  padding: 8px 14px;
+  font-size: 12px;
+  color: var(--ink-light);
+  cursor: default;
+}
+
+.chat-send {
+  width: 32px;
+  height: 32px;
+  background: var(--wa);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 13px;
+}
+
+/* ── SECTION COMMONS ───────────────────────────── */
+section {
+  padding: 100px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(32px, 3.8vw, 50px);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.section-title em {
+  font-style: normal;
+  color: var(--red);
+}
+
+.section-sub {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink-light);
+  font-weight: 300;
+  max-width: 520px;
+  margin-bottom: 60px;
+}
+
+/* ── FLAG STRIPE DIVIDER ───────────────────────── */
+.flag-stripe {
+  height: 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--red) 0px,
+    var(--red) 50%,
+    var(--yellow) 50%,
+    var(--yellow) 100%
+  );
+  background-size: 32px 8px;
+}
+
+/* ── HOW IT WORKS ──────────────────────────────── */
+.how-wrap { background: var(--white); }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.step {
+  background: var(--card);
+  padding: 40px 36px;
+  position: relative;
+  border: 1px solid var(--rule);
+}
+
+.step:first-child { border-radius: 8px 0 0 8px; }
+.step:last-child { border-radius: 0 8px 8px 0; }
+
+.step-num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 72px;
+  color: var(--sand-dark);
+  line-height: 1;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.step-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-family: var(--font-display);
+  font-size: 18px;
+}
+
+.step-body {
+  font-size: 14px;
+  color: var(--ink-light);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ── WHAT IT HANDLES ───────────────────────────── */
+.handles-wrap { background: var(--off-white); }
+
+.handles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.handle-card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 32px 28px;
+  transition: box-shadow 0.2s, transform 0.2s;
+  border-top: 4px solid var(--red);
+}
+
+.handle-card:nth-child(2) { border-top-color: var(--yellow); }
+.handle-card:nth-child(3) { border-top-color: var(--red); }
+
+.handle-card:hover {
+  box-shadow: 0 8px 32px rgba(212,43,43,0.1);
+  transform: translateY(-2px);
+}
+
+.handle-icon {
+  font-size: 28px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.handle-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.handle-body {
+  font-size: 13px;
+  color: var(--ink-light);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.handle-examples {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.handle-example {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--red-dark);
+  background: #FFF0F0;
+  padding: 4px 10px;
+  border-radius: 3px;
+  border-left: 2px solid var(--red);
+}
+
+/* ── PRICING ───────────────────────────────────── */
+.pricing-wrap { background: var(--red); }
+
+.pricing-wrap .section-eyebrow { color: var(--yellow); }
+.pricing-wrap .section-title { color: var(--white); }
+.pricing-wrap .section-sub { color: rgba(255,255,255,0.65); }
+
+.pricing-card {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 52px;
+  max-width: 680px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.2);
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: var(--yellow);
+}
+
+.pricing-club-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 28px;
+}
+
+.pricing-rows {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 36px;
+}
+
+.pricing-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.pricing-row:first-child { padding-top: 0; }
+.pricing-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+.pricing-row-left {}
+
+.pricing-label {
+  font-size: 14px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.pricing-note {
+  font-size: 12px;
+  color: var(--ink-light);
+  font-style: italic;
+  line-height: 1.4;
+  margin-top: 3px;
+}
+
+.pricing-value {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 32px;
+  color: var(--red);
+  letter-spacing: -0.01em;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.pricing-value span {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-light);
+}
+
+.pricing-includes {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.pricing-include {
+  font-size: 13px;
+  color: var(--ink-mid);
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.pricing-include::before {
+  content: '✓';
+  color: var(--red);
+  font-weight: 700;
+  flex-shrink: 0;
+  font-size: 12px;
+}
+
+/* ── PROOF ─────────────────────────────────────── */
+.proof-wrap { background: var(--white); }
+
+.proof-card {
+  background: var(--card);
+  border-radius: 8px;
+  padding: 52px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  border: 1px solid var(--rule);
+  border-left: 6px solid var(--red);
+}
+
+.proof-quote {
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--ink);
+  font-weight: 300;
+  font-style: italic;
+}
+
+.proof-source {
+  margin-top: 20px;
+  font-style: normal;
+  font-size: 13px;
+  color: var(--ink-light);
+}
+
+.proof-source strong {
+  color: var(--ink);
+  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.proof-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.proof-stat-num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 56px;
+  color: var(--red);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.proof-stat-label {
+  font-size: 13px;
+  color: var(--ink-light);
+  font-weight: 300;
+}
+
+/* ── CTA ───────────────────────────────────────── */
+.cta-wrap { background: var(--yellow); }
+
+.cta-wrap .section-eyebrow { color: var(--red-dark); }
+.cta-wrap .section-title { color: var(--ink); }
+.cta-wrap .section-sub { color: var(--ink-mid); }
+
+.interest-form {
+  display: flex;
+  gap: 12px;
+  max-width: 520px;
+  margin: 0 0 16px;
+  flex-wrap: wrap;
+}
+
+.interest-input {
+  flex: 1;
+  min-width: 200px;
+  background: var(--white);
+  border: 2px solid transparent;
+  border-radius: 4px;
+  padding: 14px 18px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.interest-input:focus { border-color: var(--red); }
+.interest-input::placeholder { color: var(--ink-light); }
+
+.btn-cta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--red);
+  padding: 14px 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.btn-cta:hover { background: var(--red-dark); }
+
+.interest-note {
+  font-size: 12px;
+  color: var(--ink-mid);
+  font-style: italic;
+}
+
+/* ── FOOTER ────────────────────────────────────── */
+.footer-wrap {
+  background: var(--ink);
+}
+
+footer {
+  padding: 36px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-logo-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--yellow);
+  border-radius: 50%;
+}
+
+.footer-right {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  text-align: right;
+  line-height: 1.7;
+}
+
+.footer-right a {
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+}
+
+.footer-right a:hover { color: var(--yellow); }
+
+/* ── RESPONSIVE ────────────────────────────────── */
+@media (max-width: 900px) {
+  nav { padding: 14px 20px; }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 100px 20px 80px;
+    gap: 48px;
+  }
+
+  .hero-left { padding-right: 0; }
+  .chat-demo { margin: 0 auto; }
+
+  section { padding: 72px 20px; }
+
+  .steps { grid-template-columns: 1fr; gap: 2px; }
+  .step:first-child { border-radius: 8px 8px 0 0; }
+  .step:last-child { border-radius: 0 0 8px 8px; }
+
+  .handles-grid { grid-template-columns: 1fr; }
+
+  .proof-card {
+    grid-template-columns: 1fr;
+    padding: 32px 24px;
+    gap: 36px;
+  }
+
+  .pricing-card { padding: 32px 24px; }
+  footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+  .footer-right { text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .msg, .typing-indicator { transition: none; }
+  .dot { animation: none; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-dot"></div>
+    CLUBBOT
+  </a>
+  <a class="nav-cta" href="#interest">Register your club</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">WhatsApp · Surf Clubs · Australia</div>
+      <h1 class="hero-headline">Before the<br>sun comes up,<br><em>your members<br>already know.</em></h1>
+      <p class="hero-sub">ClubBot is a <strong>WhatsApp assistant for surf clubs.</strong> Surf conditions, rosters, SOPs — answered instantly, in the app your members are already using.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#interest">Register your club's interest</a>
+        <a class="btn-secondary" href="#how">See how it works</a>
+      </div>
+      <div class="hero-proof">Already running at <strong>Bondi Surf Bathers' Life Saving Club</strong></div>
+    </div>
+
+    <div class="hero-right">
+      <div class="chat-demo">
+        <div class="chat-header">
+          <div class="chat-avatar">🤙</div>
+          <div>
+            <div class="chat-info-name">ClubBot</div>
+            <div class="chat-info-status">● online</div>
+          </div>
+        </div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input-bar">
+          <div class="chat-input-fake">Message</div>
+          <div class="chat-send">↑</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLAG STRIPE DIVIDER -->
+<div class="flag-stripe"></div>
+
+<!-- HOW IT WORKS -->
+<div class="how-wrap" id="how">
+  <section>
+    <div class="section-eyebrow">How it works</div>
+    <h2 class="section-title">Up and running in days,<br><em>not months.</em></h2>
+    <p class="section-sub">No new apps. No logins. No technical setup required from your club. Just WhatsApp.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">We set it up</div>
+        <div class="step-body">We configure your bot, load your club docs — rosters, SOPs, FAQs — and get a dedicated WhatsApp number live for your club. Takes a few days, not months.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Members message in</div>
+        <div class="step-body">Patrol captains, vice captains, and members message your club's WhatsApp number. No registration, no passwords — just WhatsApp as usual.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">You keep it current</div>
+        <div class="step-body">When your roster changes or a procedure updates, your admin drops a file in a shared folder. The bot picks it up on the next message. No restart, no IT.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FLAG STRIPE -->
+<div class="flag-stripe"></div>
+
+<!-- WHAT IT HANDLES -->
+<div class="handles-wrap">
+  <section>
+    <div class="section-eyebrow">What ClubBot knows</div>
+    <h2 class="section-title">Every question your<br><em>members already ask.</em></h2>
+    <p class="section-sub">ClubBot answers from your club's actual documents — not from the internet, not from guesswork.</p>
+    <div class="handles-grid">
+      <div class="handle-card">
+        <span class="handle-icon">🌊</span>
+        <div class="handle-title">Live surf conditions</div>
+        <div class="handle-body">Wave height, swell period, wind, tides, water temperature, and Beachwatch water quality — all from official sources, calibrated to your beach.</div>
+        <div class="handle-examples">
+          <div class="handle-example">"surf check"</div>
+          <div class="handle-example">"what are the conditions like?"</div>
+          <div class="handle-example">"is it safe to swim today?"</div>
+        </div>
+      </div>
+      <div class="handle-card">
+        <span class="handle-icon">📋</span>
+        <div class="handle-title">Rosters & operations</div>
+        <div class="handle-body">Patrol schedules, who's on duty, what equipment is needed, when the next training is — answered from your club's own documents.</div>
+        <div class="handle-examples">
+          <div class="handle-example">"when is my next patrol?"</div>
+          <div class="handle-example">"who's vice captain this weekend?"</div>
+          <div class="handle-example">"what gear do I need to bring?"</div>
+        </div>
+      </div>
+      <div class="handle-card">
+        <span class="handle-icon">📚</span>
+        <div class="handle-title">SOPs & awards</div>
+        <div class="handle-body">Standard operating procedures, award requirements, training pathways — instantly accessible for patrol members and Bronze Medallion candidates.</div>
+        <div class="handle-examples">
+          <div class="handle-example">"what do I need for Bronze?"</div>
+          <div class="handle-example">"how do I renew my first aid?"</div>
+          <div class="handle-example">"what's the SOP for a spinal injury?"</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PRICING -->
+<div class="pricing-wrap">
+  <section>
+    <div class="section-eyebrow">Pricing</div>
+    <h2 class="section-title">Less than a phone bill.<br>For your whole club.</h2>
+    <p class="section-sub">Simple, seasonal pricing that reflects how surf clubs actually operate.</p>
+    <div class="pricing-card">
+      <div class="pricing-club-label">Per club · Patrol persona · All members included</div>
+      <div class="pricing-rows">
+        <div class="pricing-row">
+          <div class="pricing-row-left">
+            <div class="pricing-label">One-time setup</div>
+            <div class="pricing-note">Config, doc conversion, WhatsApp number, handover session</div>
+          </div>
+          <div class="pricing-value">$800 <span>AUD</span></div>
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-row-left">
+            <div class="pricing-label">Patrol season — October to May</div>
+            <div class="pricing-note">8 months · all members · unlimited questions</div>
+          </div>
+          <div class="pricing-value">$90 <span>/ month</span></div>
+        </div>
+        <div class="pricing-row">
+          <div class="pricing-row-left">
+            <div class="pricing-label">Off-season — June to September</div>
+            <div class="pricing-note">Available year-round, quieter rate</div>
+          </div>
+          <div class="pricing-value">$30 <span>/ month</span></div>
+        </div>
+      </div>
+      <div class="pricing-includes">
+        <div class="pricing-include">Dedicated WhatsApp number for your club</div>
+        <div class="pricing-include">Your own club docs loaded and maintained</div>
+        <div class="pricing-include">Live surf conditions calibrated to your beach</div>
+        <div class="pricing-include">Simple doc management — no technical skills needed</div>
+        <div class="pricing-include">Setup and handover by the team that built it for Bondi</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FLAG STRIPE -->
+<div class="flag-stripe"></div>
+
+<!-- PROOF -->
+<div class="proof-wrap">
+  <section>
+    <div class="section-eyebrow">Live at Bondi Beach</div>
+    <h2 class="section-title">Built in the water.<br><em>Proven on the sand.</em></h2>
+    <p class="section-sub">ClubBot started at Bondi Surf Bathers' Life Saving Club and has been running through a full patrol season before being made available to other clubs.</p>
+    <div class="proof-card">
+      <div>
+        <div class="proof-quote">
+          "Before ClubBot, patrol captains were chasing answers in folders, email threads, and WhatsApp groups before every dawn patrol. Now they just ask."
+        </div>
+        <div class="proof-source">
+          <strong>Bondi Surf Bathers' Life Saving Club</strong>
+          Sydney, NSW — operating since 1906
+        </div>
+      </div>
+      <div class="proof-stats">
+        <div>
+          <div class="proof-stat-num">5:30</div>
+          <div class="proof-stat-label">AM — when patrol captains check conditions before dawn patrol</div>
+        </div>
+        <div>
+          <div class="proof-stat-num">~30s</div>
+          <div class="proof-stat-label">Average time from question to answer</div>
+        </div>
+        <div>
+          <div class="proof-stat-num">0</div>
+          <div class="proof-stat-label">New apps for your members to download</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FLAG STRIPE -->
+<div class="flag-stripe"></div>
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <section id="interest">
+    <div class="section-eyebrow">Early access</div>
+    <h2 class="section-title">Register your<br>club's interest.</h2>
+    <p class="section-sub">We're onboarding a small number of clubs for the 2026–27 patrol season. Leave your details and we'll be in touch.</p>
+    <div class="interest-form">
+      <input class="interest-input" type="text" placeholder="Club name" id="inputClub">
+      <input class="interest-input" type="email" placeholder="Your email" id="inputEmail">
+      <button class="btn-cta" onclick="handleSubmit()">Register interest</button>
+    </div>
+    <div class="interest-note" id="formNote">No commitment. We'll send you more information and a time to chat.</div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<div class="footer-wrap">
+  <footer>
+    <div class="footer-logo">
+      <div class="footer-logo-dot"></div>
+      CLUBBOT
+    </div>
+    <div class="footer-right">
+      <a href="https://clubbot.com.au">clubbot.com.au</a> &nbsp;·&nbsp;
+      Built by <a href="https://deltawork.ai">Delta Work</a> &nbsp;·&nbsp;
+      <a href="mailto:eugene@deltawork.ai">eugene@deltawork.ai</a><br>
+      <span style="font-size:11px; opacity:0.5;">Questions about ClubBot for your club? Get in touch.</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+// ── Chat demo animation ──────────────────────────────────────
+const conversations = [
+  [
+    { type: 'user', text: 'surf check' },
+    { type: 'bot', html: '<strong>Bondi Beach — right now</strong><div class="conditions-row"><span class="cond-pill">🌊 1.2m swell</span><span class="cond-pill">💨 12kt N</span><span class="cond-pill">🌡 20°C</span><span class="cond-pill">🔵 HW 09:42</span><span class="cond-pill">✅ Good quality</span></div>' },
+  ],
+  [
+    { type: 'user', text: 'when is my next patrol?' },
+    { type: 'bot', html: 'Your next patrol is <strong>Sunday 22 June, 7am–11am.</strong> You\'re rostered as Vice Captain. Your patrol captain is Marcus Webb. Equipment: IRB, first aid kit, radio.' },
+  ],
+  [
+    { type: 'user', text: 'what do I need for Bronze Medallion?' },
+    { type: 'bot', html: 'Bronze Medallion requires: CPR certificate (current), swim 400m in &lt;9 mins, complete pool and beach assessments, and pass the theory exam. Your club runs the course in February and October. Speak to the Education Officer to enrol.' },
+  ]
+];
+
+const container = document.getElementById('chatMessages');
+let currentConv = 0;
+
+function clearMessages() {
+  container.innerHTML = '';
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function showConversation(convIndex) {
+  clearMessages();
+  const conv = conversations[convIndex];
+  for (let i = 0; i < conv.length; i++) {
+    const msg = conv[i];
+    if (msg.type === 'bot') {
+      // Show typing indicator
+      const typing = document.createElement('div');
+      typing.className = 'typing-indicator';
+      typing.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+      container.appendChild(typing);
+      container.scrollTop = container.scrollHeight;
+      await sleep(100);
+      typing.classList.add('visible');
+      await sleep(1200);
+      typing.remove();
+    }
+    const el = document.createElement('div');
+    el.className = `msg msg-${msg.type}`;
+    if (msg.html) {
+      el.innerHTML = msg.html;
+    } else {
+      el.textContent = msg.text;
+    }
+    container.appendChild(el);
+    container.scrollTop = container.scrollHeight;
+    await sleep(80);
+    el.classList.add('visible');
+    await sleep(msg.type === 'user' ? 600 : 1800);
+  }
+}
+
+async function runLoop() {
+  while (true) {
+    await showConversation(currentConv);
+    await sleep(2800);
+    currentConv = (currentConv + 1) % conversations.length;
+  }
+}
+
+// Start after a brief delay
+setTimeout(runLoop, 800);
+
+// ── Interest form ────────────────────────────────────────────
+function handleSubmit() {
+  const club = document.getElementById('inputClub').value.trim();
+  const email = document.getElementById('inputEmail').value.trim();
+  const note = document.getElementById('formNote');
+
+  if (!club || !email) {
+    note.textContent = 'Please enter your club name and email address.';
+    note.style.color = '#F5A52A';
+    return;
+  }
+
+  note.textContent = `Thanks — we'll be in touch with ${club} shortly.`;
+  note.style.color = '#4DD9B0';
+  note.style.fontStyle = 'normal';
+  note.style.fontWeight = '500';
+  document.getElementById('inputClub').value = '';
+  document.getElementById('inputEmail').value = '';
+}
+</script>
+
+</body>
+</html>
