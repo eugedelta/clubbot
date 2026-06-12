@@ -314,6 +314,21 @@ nav {
   justify-content: center;
   font-size: 18px;
   flex-shrink: 0;
+  position: relative;
+}
+
+.chat-avatar-wa {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 16px;
+  height: 16px;
+  background: var(--wa);
+  border-radius: 50%;
+  border: 2px solid var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .chat-info-name {
@@ -968,10 +983,14 @@ footer {
     <div class="hero-right">
       <div class="chat-demo">
         <div class="chat-header">
-          <div class="chat-avatar">🤙</div>
+          <div class="chat-avatar">🤙
+            <div class="chat-avatar-wa">
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.522 5.847L0 24l6.335-1.499A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm6.18 16.58c-.26.73-1.51 1.39-2.07 1.47-.53.08-1.2.11-1.94-.12-.45-.14-1.02-.33-1.75-.65-3.08-1.33-5.09-4.43-5.24-4.63-.15-.2-1.22-1.62-1.22-3.09 0-1.47.77-2.19 1.04-2.49.27-.3.59-.37.79-.37.2 0 .39.002.56.01.18.008.42-.068.66.5.26.59.87 2.12.94 2.27.08.15.13.33.03.53-.1.2-.15.32-.3.49-.15.17-.31.38-.45.51-.15.14-.3.29-.13.57.17.28.77 1.27 1.65 2.05 1.13 1.01 2.08 1.32 2.37 1.47.29.15.46.13.63-.08.17-.21.73-.85.92-1.14.19-.29.38-.24.64-.14.26.1 1.64.77 1.92.91.28.14.47.21.54.33.07.12.07.69-.19 1.42z"/></svg>
+            </div>
+          </div>
           <div>
             <div class="chat-info-name">ClubBot</div>
-            <div class="chat-info-status">● online</div>
+            <div class="chat-info-status">via WhatsApp · online</div>
           </div>
         </div>
         <div class="chat-messages" id="chatMessages"></div>
