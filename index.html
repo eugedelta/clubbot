@@ -99,12 +99,22 @@ nav {
   gap: 8px;
 }
 
-.nav-logo-dot {
-  width: 10px;
-  height: 10px;
-  background: var(--yellow);
-  border-radius: 50%;
+.nav-logo-mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  background: var(--red-dark);
+  overflow: hidden;
+  position: relative;
   flex-shrink: 0;
+}
+
+.nav-logo-mark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--yellow);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
 }
 
 .nav-cta {
@@ -370,14 +380,14 @@ nav {
 }
 
 .cond-pill {
-  background: #FFF3CD;
-  color: var(--ink-mid);
+  background: transparent;
+  color: var(--ink);
   font-family: var(--font-mono);
   font-size: 10px;
-  padding: 3px 8px;
-  border-radius: 3px;
+  padding: 3px 9px;
+  border-radius: 20px;
   white-space: nowrap;
-  border: 1px solid #F7C948;
+  border: 1.5px solid var(--yellow);
 }
 
 .typing-indicator {
@@ -861,10 +871,21 @@ footer {
 }
 
 .footer-logo-dot {
-  width: 8px;
-  height: 8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.15);
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.footer-logo-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: var(--yellow);
-  border-radius: 50%;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
 }
 
 .footer-right {
@@ -925,7 +946,7 @@ footer {
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">
-    <div class="nav-logo-dot"></div>
+    <div class="nav-logo-mark"></div>
     CLUBBOT
   </a>
   <a class="nav-cta" href="#interest">Register your club</a>
