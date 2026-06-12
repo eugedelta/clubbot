@@ -1172,7 +1172,7 @@ async function runLoop() {
 setTimeout(runLoop, 800);
 
 // ── Interest form ────────────────────────────────────────────
-function handleSubmit() {
+async function handleSubmit() {
   const club = document.getElementById('inputClub').value.trim();
   const email = document.getElementById('inputEmail').value.trim();
   const note = document.getElementById('formNote');
@@ -1183,12 +1183,30 @@ function handleSubmit() {
     return;
   }
 
-  note.textContent = `Thanks — we'll be in touch with ${club} shortly.`;
-  note.style.color = '#4DD9B0';
-  note.style.fontStyle = 'normal';
-  note.style.fontWeight = '500';
-  document.getElementById('inputClub').value = '';
-  document.getElementById('inputEmail').value = '';
+  note.textContent = 'Sending…';
+  note.style.color = '';
+  note.style.fontStyle = 'italic';
+  note.style.fontWeight = '';
+
+  try {
+    const res = await fetch('/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ club, email }),
+    });
+
+    if (!res.ok) throw new Error('Server error');
+
+    note.textContent = `Thanks — we'll be in touch with ${club} shortly.`;
+    note.style.color = '#4DD9B0';
+    note.style.fontStyle = 'normal';
+    note.style.fontWeight = '500';
+    document.getElementById('inputClub').value = '';
+    document.getElementById('inputEmail').value = '';
+  } catch (e) {
+    note.textContent = 'Something went wrong — please try again or email us directly.';
+    note.style.color = '#F5A52A';
+  }
 }
 </script>
 
