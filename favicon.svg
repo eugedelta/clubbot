@@ -1,0 +1,9 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ClubBot">
+  <defs>
+    <clipPath id="round"><rect width="512" height="512" rx="116" ry="116"></rect></clipPath>
+  </defs>
+  <g clip-path="url(#round)">
+    <rect width="512" height="512" fill="#D42B2B"></rect>
+    <polygon points="512,0 512,512 0,512" fill="#F7C948"></polygon>
+  </g>
+</svg>
