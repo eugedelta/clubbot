@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — ClubBot</title>
+
+<!-- Favicons -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#D42B2B">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://clubbot.com.au/privacy">
+<meta property="og:title" content="Privacy Policy — ClubBot">
+<meta property="og:description" content="How ClubBot handles your data. Plain English, no law degree required.">
+<meta property="og:image" content="https://clubbot.com.au/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<script defer src="/_vercel/insights/script.js"></script>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --red:         #D42B2B;
+  --red-dark:    #A82020;
+  --red-deep:    #7a1616;
+  --yellow:      #F7C948;
+  --yellow-dim:  #d4a82a;
+  --white:       #FFFFFF;
+  --off-white:   #F8F5F0;
+  --sand:        #F0EAE0;
+  --sand-dark:   #E0D6C8;
+  --ink:         #1A1208;
+  --ink-mid:     #4A3F30;
+  --ink-light:   #8C7E6A;
+  --rule:        #E0D6C8;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'DM Mono', monospace;
+}
+
+body {
+  background: var(--off-white);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+nav {
+  background: var(--red);
+  padding: 16px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid var(--red-dark);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 24px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-logo-mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  background: var(--red-dark);
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.nav-logo-mark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--yellow);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.nav-back {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+  background: var(--yellow);
+  padding: 9px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.nav-back:hover { background: var(--yellow-dim); }
+
+/* FLAG STRIPE */
+.flag-stripe {
+  height: 8px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--red) 0px, var(--red) 50%,
+    var(--yellow) 50%, var(--yellow) 100%
+  );
+  background-size: 32px 8px;
+}
+
+/* HERO */
+.hero {
+  background: var(--white);
+  border-bottom: 1px solid var(--rule);
+  padding: 56px 48px 48px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 14px;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 48px;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.hero-meta {
+  font-size: 13px;
+  color: var(--ink-light);
+  font-style: italic;
+}
+
+.hero-lead {
+  margin-top: 20px;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink-mid);
+  font-weight: 300;
+  max-width: 600px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+}
+
+/* CONTENT */
+.content-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 48px 80px;
+}
+
+.section {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 36px 40px;
+  margin-top: 20px;
+}
+
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 8px;
+}
+
+.section h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.section p {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--ink-mid);
+  font-weight: 300;
+  margin-bottom: 14px;
+}
+
+.section p:last-child { margin-bottom: 0; }
+
+.section p strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.section a {
+  color: var(--red);
+  text-decoration: none;
+  font-weight: 400;
+}
+.section a:hover { text-decoration: underline; }
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 13.5px;
+}
+
+.data-table th {
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  padding: 8px 12px;
+  background: var(--off-white);
+  border: 1px solid var(--rule);
+}
+
+.data-table td {
+  padding: 10px 12px;
+  border: 1px solid var(--rule);
+  vertical-align: top;
+  color: var(--ink-mid);
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+.data-table tr:nth-child(even) td {
+  background: var(--off-white);
+}
+
+/* Highlight box */
+.highlight {
+  background: #FFF8E7;
+  border-left: 3px solid var(--yellow);
+  border-radius: 0 4px 4px 0;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-mid);
+}
+
+.highlight strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* Contact box */
+.contact-box {
+  background: var(--red);
+  border-radius: 6px;
+  padding: 28px 32px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.contact-box-left h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.contact-box-left p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  font-weight: 300;
+}
+
+.contact-email {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--yellow);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+.contact-email:hover { text-decoration: underline; }
+
+/* Footer */
+.footer-wrap { background: var(--ink); }
+footer {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 36px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-logo-mark {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: var(--red);
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.footer-logo-mark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--yellow);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.footer-right {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  text-align: right;
+  line-height: 1.7;
+}
+
+.footer-right a {
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+}
+.footer-right a:hover { color: var(--yellow); }
+
+@media (max-width: 700px) {
+  nav { padding: 14px 20px; }
+  .hero, .content-wrap, footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .hero h1 { font-size: 36px; }
+  .section { padding: 24px 20px; }
+  .contact-box { flex-direction: column; align-items: flex-start; }
+  footer { flex-direction: column; align-items: flex-start; }
+  .footer-right { text-align: left; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <div class="nav-logo-mark"></div>
+    CLUB&thinsp;BOT
+  </a>
+  <a class="nav-back" href="/">Back to clubbot.com.au</a>
+</nav>
+
+<div class="flag-stripe"></div>
+
+<div style="background: var(--white);">
+  <div class="hero">
+    <div class="hero-eyebrow">Legal</div>
+    <h1>Privacy Policy</h1>
+    <div class="hero-meta">Effective date: 1 October 2026 &nbsp;·&nbsp; Last updated: June 2026</div>
+    <p class="hero-lead">ClubBot is a WhatsApp assistant for surf lifesaving clubs. This policy explains what information we collect when you use ClubBot, why we collect it, and how it's handled. We've written it in plain English because we think you deserve to understand it without a law degree.</p>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <div class="section">
+    <div class="section-num">01</div>
+    <h2>Who we are</h2>
+    <p>ClubBot is operated by <strong>Delta Work</strong>, an AI consultancy based in Sydney, Australia. When you use ClubBot, you're interacting with a service built and managed by Delta Work on behalf of your surf club.</p>
+    <p>If you have questions about this policy or how your data is handled, contact us at <strong>eugene@deltawork.ai</strong>.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">02</div>
+    <h2>What we collect</h2>
+    <p>When you message a ClubBot number, we collect and store the following:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Why we collect it</th>
+          <th>How long we keep it</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Your WhatsApp phone number</strong></td>
+          <td>To identify you and send replies back to you</td>
+          <td>For the duration of your club membership, or until you request deletion</td>
+        </tr>
+        <tr>
+          <td><strong>Your messages and our replies</strong></td>
+          <td>To generate answers and maintain short conversation context (last 5 exchanges)</td>
+          <td>Session context is cleared after each conversation. Full logs kept for 12 months then deleted.</td>
+        </tr>
+        <tr>
+          <td><strong>Your SLS member number</strong> (if you provide it)</td>
+          <td>To verify your club membership and personalise responses</td>
+          <td>For the duration of your club membership, or until you request deletion</td>
+        </tr>
+        <tr>
+          <td><strong>Feedback responses</strong> (👍 / 👎)</td>
+          <td>To measure and improve answer quality</td>
+          <td>12 months, then deleted</td>
+        </tr>
+        <tr>
+          <td><strong>Usage logs</strong> (message type, model used, token counts)</td>
+          <td>For operational monitoring and cost allocation</td>
+          <td>12 months, then deleted</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>We do <strong>not</strong> collect your name, email address, location, or any other personal information unless your club administrator has added it to your member profile on your club's behalf.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">03</div>
+    <h2>How your messages are processed</h2>
+    <p>This is the most important section to understand. When you send a message to ClubBot, here is the path it takes:</p>
+
+    <div class="highlight">
+      <strong>Your phone → Meta (WhatsApp) → ClubBot servers (Railway) → Anthropic API → back to you.</strong><br>
+      Your message is seen by Meta's infrastructure to deliver it, and by Anthropic's API to generate the answer. Both are subject to their own privacy policies, linked below.
+    </div>
+
+    <p><strong>Meta (WhatsApp):</strong> Your messages travel through Meta's WhatsApp Business Platform. Meta processes message delivery according to their <a href="https://www.whatsapp.com/legal/privacy-policy">WhatsApp Privacy Policy</a> and <a href="https://www.facebook.com/legal/terms/businesstools">Business Tools Terms</a>.</p>
+
+    <p><strong>Anthropic:</strong> Your message content is sent to Anthropic's Claude API to generate answers. Anthropic's API terms specify that they do not use API inputs to train their models, and data is not retained beyond the API call. See <a href="https://www.anthropic.com/legal/privacy">Anthropic's Privacy Policy</a> for details.</p>
+
+    <p><strong>ClubBot servers:</strong> Your data is stored on Railway's hosting infrastructure. Railway operates servers in the United States. Your data may therefore be processed and stored outside Australia. We take reasonable steps to ensure it is handled securely.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">04</div>
+    <h2>Who can see your data</h2>
+    <p>Access to your data is strictly limited:</p>
+    <p><strong>Your club administrator</strong> can see that you are a registered member of their ClubBot. They cannot see the content of your individual messages.</p>
+    <p><strong>Delta Work (us)</strong> can access usage logs and aggregate quality metrics for the purpose of operating and improving the service. We do not read individual member conversations unless investigating a specific technical issue.</p>
+    <p><strong>No one else.</strong> We do not sell, rent, share, or disclose your data to any third party for commercial purposes. We will only disclose data if required to do so by Australian law.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">05</div>
+    <h2>What we don't do</h2>
+    <p>To be explicit:</p>
+    <p>We do <strong>not</strong> sell your data to advertisers or any third party.</p>
+    <p>We do <strong>not</strong> use your messages to train AI models.</p>
+    <p>We do <strong>not</strong> share your WhatsApp number or SLS member number with other clubs or organisations.</p>
+    <p>We do <strong>not</strong> send you unsolicited messages. ClubBot only replies when you message first.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">06</div>
+    <h2>Your rights</h2>
+    <p>Under Australian privacy law, you have the right to:</p>
+    <p><strong>Access</strong> the personal information we hold about you.</p>
+    <p><strong>Correct</strong> any inaccurate information.</p>
+    <p><strong>Request deletion</strong> of your data. We will delete your member record, message logs, and session data within 30 days of a verified request. Note that deletion means you will need to re-register if you wish to use ClubBot again.</p>
+    <p><strong>Opt out of feedback requests</strong> at any time by tapping the 🔇 button when ClubBot asks for feedback.</p>
+    <p>To exercise any of these rights, contact us at <strong>eugene@deltawork.ai</strong> with your request. We'll respond within 30 days.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">07</div>
+    <h2>Data security</h2>
+    <p>We take reasonable steps to protect your data from unauthorised access, loss, or misuse. This includes encrypted connections (HTTPS/TLS) for all data in transit, access controls on our database, and environment-level secret management for API credentials.</p>
+    <p>No system is perfectly secure. If you become aware of a security concern relating to ClubBot, please contact us immediately at <strong>eugene@deltawork.ai</strong>.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">08</div>
+    <h2>Children</h2>
+    <p>ClubBot is intended for use by surf club patrol members aged 15 and over. The Nippers persona, if active at your club, is intended for use by parents and Nippers coordinators — not directly by children. If you believe a child under 15 has registered with ClubBot without parental consent, contact us at <strong>eugene@deltawork.ai</strong> and we will delete their record promptly.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">09</div>
+    <h2>Changes to this policy</h2>
+    <p>We may update this policy from time to time. When we do, we'll update the "last updated" date at the top of this page. For significant changes, we'll notify clubs directly so they can inform their members. Continued use of ClubBot after a policy update means you accept the revised policy.</p>
+  </div>
+
+  <div class="contact-box">
+    <div class="contact-box-left">
+      <h3>Questions about your privacy?</h3>
+      <p>We're happy to explain anything in this policy or discuss how your data is handled.</p>
+    </div>
+    <a class="contact-email" href="mailto:eugene@deltawork.ai">eugene@deltawork.ai</a>
+  </div>
+
+</div>
+
+<div class="footer-wrap">
+  <footer>
+    <a class="footer-logo" href="/">
+      <div class="footer-logo-mark"></div>
+      CLUB&thinsp;BOT
+    </a>
+    <div class="footer-right">
+      <a href="https://clubbot.com.au">clubbot.com.au</a> &nbsp;·&nbsp;
+      Built by <a href="https://deltawork.ai">Delta Work</a><br>
+      <span style="font-size:11px; opacity:0.5;">ABN 89 697 948 119 · Sydney, Australia</span>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
