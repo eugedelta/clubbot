@@ -622,18 +622,24 @@ section {
   font-weight: 300;
 }
 
-.coming-soon-pill {
-  display: inline-block;
-  background: var(--yellow);
-  color: var(--ink);
+.handles-coming-soon-heading {
   font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 600;
-  padding: 3px 9px;
-  border-radius: 20px;
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 12px;
+  color: var(--ink-light);
+  margin: 52px 0 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.handles-coming-soon-heading::before,
+.handles-coming-soon-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
 }
 
 .handle-examples {
@@ -1122,10 +1128,12 @@ footer {
           <div class="handle-example">"What's the process to apply for long service?"</div>
         </div>
       </div>
+    </div>
+    <h2 class="handles-coming-soon-heading">Coming Soon</h2>
+    <div class="handles-grid">
       <div class="handle-card">
         <span class="handle-icon">🦈</span>
         <div class="handle-title">Shark alerts</div>
-        <div class="coming-soon-pill">Coming soon</div>
         <div class="handle-body">Real-time push alerts for shark sightings in your area, fed by trusted sources — so your patrol stays informed before the flags go up.</div>
       </div>
     </div>
