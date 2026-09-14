@@ -1,5 +1,15 @@
 {
   "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/:club-onboarding",
+      "destination": "https://clubbot-production-d43e.up.railway.app/onboarding/:club"
+    },
+    {
+      "source": "/api/onboarding/:club",
+      "destination": "https://clubbot-production-d43e.up.railway.app/api/onboarding/:club"
+    }
+  ],
   "redirects": [
     { "source": "/pricing", "destination": "/", "permanent": false }
   ]
