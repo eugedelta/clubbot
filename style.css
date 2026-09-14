@@ -439,6 +439,21 @@ section {
   font-weight: 300;
 }
 
+.about-contact {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--ink-mid);
+  font-weight: 300;
+}
+
+.about-contact a {
+  color: var(--red);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.about-contact a:hover { text-decoration: underline; }
+
 /* ── HOW IT WORKS PAGE ─────────────────────────── */
 .how-deep {
   display: flex;
