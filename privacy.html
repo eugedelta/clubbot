@@ -217,7 +217,7 @@
 <div class="privacy-hero">
   <div class="privacy-hero-eyebrow">Legal</div>
   <h1>Privacy Policy</h1>
-  <div class="hero-meta">Effective date: 1 October 2026 &nbsp;·&nbsp; Last updated: June 2026</div>
+  <div class="hero-meta">Effective date: 1 October 2026 &nbsp;·&nbsp; Last updated: 26 October 2026</div>
   <p>ClubBot is a WhatsApp assistant for surf lifesaving clubs. This policy explains what information we collect when you use ClubBot, why we collect it, and how it's handled. We've written it in plain English because we think you deserve to understand it without a law degree.</p>
 </div>
 
@@ -225,7 +225,7 @@
   <section>
     <div class="section-num">01</div>
     <h2>Who we are</h2>
-    <p>ClubBot is operated by <strong>Delta Work</strong>, an AI consultancy based in Sydney, Australia. When you use ClubBot, you're interacting with a service built and managed by Delta Work on behalf of your surf club.</p>
+    <p>ClubBot is operated by <strong>Delta Work Pty Ltd</strong> (ACN 697 948 119, ABN 89 697 948 119), based in Sydney, Australia. When you use ClubBot, you're using a service Delta Work builds and runs on behalf of your surf club.</p>
     <p>If you have questions about this policy or how your data is handled, contact us at <strong>gday@clubbot.com.au</strong>.</p>
   </section>
 
@@ -242,17 +242,22 @@
         <tr>
           <td><strong>Your WhatsApp phone number</strong></td>
           <td>To identify you and send replies back to you</td>
-          <td>For the duration of your club membership, or until you request deletion</td>
+          <td>For as long as you use ClubBot at your club, or until you ask us to delete it</td>
+        </tr>
+        <tr>
+          <td><strong>Your patrol team</strong> (if you tell us)</td>
+          <td>To answer questions about your roster and patrols</td>
+          <td>For as long as you use ClubBot at your club, or until you ask us to delete it</td>
         </tr>
         <tr>
           <td><strong>Your messages and our replies</strong></td>
-          <td>To generate answers and maintain short conversation context (last 5 exchanges)</td>
-          <td>Session context is cleared after each conversation. Full logs kept for 12 months then deleted.</td>
+          <td>To answer you. ClubBot uses your last 5 exchanges to understand follow-up questions</td>
+          <td>12 months, then deleted</td>
         </tr>
         <tr>
-          <td><strong>Your SLS member number</strong> (if you provide it)</td>
-          <td>To verify your club membership and personalise responses</td>
-          <td>For the duration of your club membership, or until you request deletion</td>
+          <td><strong>Your SLS member number</strong> (if you give it)</td>
+          <td>To check your club membership and tailor answers</td>
+          <td>For as long as you use ClubBot at your club, or until you ask us to delete it</td>
         </tr>
         <tr>
           <td><strong>Feedback responses</strong></td>
@@ -261,83 +266,91 @@
         </tr>
         <tr>
           <td><strong>Usage logs</strong> (message type, model used, token counts)</td>
-          <td>For operational monitoring and cost allocation</td>
+          <td>To run the service and track costs</td>
           <td>12 months, then deleted</td>
         </tr>
       </tbody>
     </table>
 
-    <p>We do <strong>not</strong> collect your name, email address, location, or any other personal information unless your club administrator has added it to your member profile on your club's behalf.</p>
+    <p>If your club's agreement with us sets a shorter period, we follow that instead. For example, a pilot agreement may require us to delete your data within 30 days after the pilot ends.</p>
+    <p>We <strong>don't</strong> collect your name, email address, location, age or date of birth, or any other personal information unless your club adds it to your member profile on its behalf.</p>
+    <p>Please don't send ClubBot health details, incident reports or other people's personal information. It doesn't need them to answer your questions.</p>
   </section>
 
   <section>
     <div class="section-num">03</div>
     <h2>How your messages are processed</h2>
-    <p>This is the most important section to understand. When you send a message to ClubBot, here is the path it takes:</p>
+    <p>This is the most important section to understand. When you send a message to ClubBot, it takes this path:</p>
 
     <div class="highlight">
       <strong>Your phone → Meta (WhatsApp) → ClubBot servers (Railway) → Anthropic API → back to you.</strong><br>
-      Your message is seen by Meta's infrastructure to deliver it, and by Anthropic's API to generate the answer. Both are subject to their own privacy policies, linked below.
+      Three companies handle your messages on our behalf. Each has its own privacy policy.
     </div>
 
-    <p><strong>Meta (WhatsApp):</strong> Your messages travel through Meta's WhatsApp Business Platform. Meta processes message delivery according to their <a href="https://www.whatsapp.com/legal/privacy-policy">WhatsApp Privacy Policy</a> and <a href="https://www.facebook.com/legal/terms/businesstools">Business Tools Terms</a>.</p>
-    <p><strong>Anthropic:</strong> Your message content is sent to Anthropic's Claude API to generate answers. Anthropic's API terms specify that they do not use API inputs to train their models, and data is not retained beyond the API call. See <a href="https://www.anthropic.com/legal/privacy">Anthropic's Privacy Policy</a> for details.</p>
-    <p><strong>ClubBot servers:</strong> Your data is stored on Railway's hosting infrastructure. Railway operates servers in the United States. Your data may therefore be processed and stored outside Australia. We take reasonable steps to ensure it is handled securely.</p>
+    <p><strong>Meta (WhatsApp):</strong> Your messages travel through Meta's WhatsApp Business Platform, under Meta's <a href="https://www.whatsapp.com/legal/privacy-policy">WhatsApp Privacy Policy</a> and <a href="https://www.facebook.com/legal/terms/businesstools">Business Tools Terms</a>.</p>
+    <p><strong>Anthropic:</strong> Your message is sent to Anthropic's Claude API to write the answer. Anthropic does not use API data to train its models. It deletes API inputs and outputs within 30 days except in the limited cases set out in <a href="https://www.anthropic.com/legal/privacy">Anthropic's privacy policy</a>.</p>
+    <p><strong>Railway:</strong> Our servers and database are hosted by Railway, whose servers are in the United States.</p>
+    <p>Meta, Anthropic and Railway may store or process your data outside Australia, including in the United States. We take reasonable steps to make sure it is handled securely and in line with the Australian Privacy Principles.</p>
+    <p>Your club's documents (handbooks, rosters, procedures) may be held in Google Drive. Your messages and phone number are not.</p>
   </section>
 
   <section>
     <div class="section-num">04</div>
     <h2>Who can see your data</h2>
-    <p>Access to your data is strictly limited:</p>
-    <p><strong>Your club administrator</strong> can see that you are a registered member of their ClubBot. They cannot see the content of your individual messages.</p>
-    <p><strong>Delta Work (us)</strong> can access usage logs and aggregate quality metrics for the purpose of operating and improving the service. We do not read individual member conversations unless investigating a specific technical issue.</p>
-    <p><strong>No one else.</strong> We do not sell, rent, share, or disclose your data to any third party for commercial purposes. We will only disclose data if required to do so by Australian law.</p>
+    <p>Access to your data is limited to the following:</p>
+    <p><strong>Your club</strong> can see that you are registered with its ClubBot. It also receives usage reports: how many members use ClubBot, the questions asked most often, and questions ClubBot couldn't answer. Reports show only the last 4 digits of phone numbers, never your full number. Your club cannot browse your conversations.</p>
+    <p><strong>Delta Work (us)</strong> can see conversations, usage logs and quality measures, to run and improve the service. We review conversations to fix wrong or missing answers and check answer quality, including with an automated daily review. Only Delta Work does this.</p>
+    <p><strong>No one else.</strong> We do not sell, rent, share or disclose your data to anyone for commercial purposes. We only disclose it if Australian law requires us to.</p>
   </section>
 
   <section>
     <div class="section-num">05</div>
     <h2>What we don't do</h2>
-    <p>To be explicit:</p>
-    <p>We do <strong>not</strong> sell your data to advertisers or any third party.</p>
+    <p>To be clear:</p>
+    <p>We do <strong>not</strong> sell your data to advertisers or anyone else.</p>
     <p>We do <strong>not</strong> use your messages to train AI models.</p>
     <p>We do <strong>not</strong> share your WhatsApp number or SLS member number with other clubs or organisations.</p>
-    <p>We do <strong>not</strong> send you unsolicited messages. ClubBot only replies when you message first.</p>
+    <p>We do <strong>not</strong> send you unsolicited messages. ClubBot only replies when you message it first.</p>
   </section>
 
   <section>
     <div class="section-num">06</div>
     <h2>Your rights</h2>
-    <p>Under Australian privacy law, you have the right to:</p>
-    <p><strong>Access</strong> the personal information we hold about you.</p>
-    <p><strong>Correct</strong> any inaccurate information.</p>
-    <p><strong>Request deletion</strong> of your data. We will delete your member record, message logs, and session data within 30 days of a verified request. Note that deletion means you will need to re-register if you wish to use ClubBot again.</p>
+    <p>Under Australian privacy law, you can:</p>
+    <p><strong>Ask for</strong> the personal information we hold about you.</p>
+    <p><strong>Ask us to correct</strong> anything that's wrong.</p>
+    <p><strong>Ask us to delete</strong> your data. We delete your member record, message logs and conversation history within 30 days of a verified request. You'll need to register again if you want to use ClubBot later.</p>
     <p><strong>Opt out of feedback requests</strong> at any time.</p>
-    <p>To exercise any of these rights, contact us at <strong>gday@clubbot.com.au</strong> with your request. We'll respond within 30 days.</p>
+    <p>To do any of these, email <strong>gday@clubbot.com.au</strong>. We'll respond within 30 days. If you're not happy with our response, you can complain to the Office of the Australian Information Commissioner at <a href="https://www.oaic.gov.au">oaic.gov.au</a>.</p>
   </section>
 
   <section>
     <div class="section-num">07</div>
     <h2>Data security</h2>
-    <p>We take reasonable steps to protect your data from unauthorised access, loss, or misuse. This includes encrypted connections (HTTPS/TLS) for all data in transit, access controls on our database, and environment-level secret management for API credentials.</p>
-    <p>No system is perfectly secure. If you become aware of a security concern relating to ClubBot, please contact us immediately at <strong>gday@clubbot.com.au</strong>.</p>
+    <p>We take reasonable steps to protect your data from unauthorised access, loss or misuse. These include encrypted connections (HTTPS/TLS) for all data in transit, access controls on our database, and secure storage of passwords and API keys.</p>
+    <p>No system is perfectly secure. If we become aware of a data breach that is likely to cause serious harm, we will tell your club and the members affected as soon as we can, and notify the Office of the Australian Information Commissioner where the law requires it.</p>
+    <p>If you notice a security concern relating to ClubBot, please email <strong>gday@clubbot.com.au</strong> straight away.</p>
   </section>
 
   <section>
     <div class="section-num">08</div>
-    <h2>Children</h2>
-    <p>ClubBot is intended for use by surf club patrol members aged 15 and over. The Nippers persona, if active at your club, is intended for use by parents and Nippers coordinators — not directly by children. If you believe a child under 15 has registered with ClubBot without parental consent, contact us at <strong>gday@clubbot.com.au</strong> and we will delete their record promptly.</p>
+    <h2>Children and Cadets</h2>
+    <p>ClubBot is for surf club patrol members aged 15 and over. A club may also offer ClubBot to its Cadets aged 13 and 14, if the club has told their parents or guardians and they have agreed.</p>
+    <p>We handle Cadets' data in exactly the same way as everyone else's. We don't collect anyone's age or date of birth, so we rely on the club to decide who is invited.</p>
+    <p>The Nippers persona, where a club has it, is for parents and Nippers coordinators, not for children to use themselves.</p>
+    <p>If you think a child has started using ClubBot without a parent's or guardian's agreement, email <strong>gday@clubbot.com.au</strong> and we'll delete their data promptly. A parent or guardian can also ask us to delete their child's data at any time.</p>
   </section>
 
   <section>
     <div class="section-num">09</div>
     <h2>Changes to this policy</h2>
-    <p>We may update this policy from time to time. When we do, we'll update the "last updated" date at the top of this page. For significant changes, we'll notify clubs directly so they can inform their members. Continued use of ClubBot after a policy update means you accept the revised policy.</p>
+    <p>We may update this policy from time to time. When we do, we'll change the dates at the top of this page. For significant changes, we'll tell clubs directly so they can let their members know. If you keep using ClubBot after an update, the updated policy applies.</p>
   </section>
 
   <div class="contact-box">
     <div>
       <h3>Questions about your privacy?</h3>
-      <p>We're happy to explain anything in this policy or discuss how your data is handled.</p>
+      <p>We're happy to explain anything in this policy or talk through how your data is handled.</p>
     </div>
     <a class="contact-email" href="mailto:gday@clubbot.com.au">gday@clubbot.com.au</a>
   </div>
